@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "start":   "node src/app.js",
+    "dev":     "nodemon src/app.js",
+    "migrate": "psql -U postgres -d legalaid_db -f src/database/migrations/001_initial_schema.sql",
+    "test":    "jest --coverage"
+  }
+}

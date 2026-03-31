@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment variables (NEVER push secrets)
+.env
+.env.local
+.env.production
+
+# Logs
+logs/
+*.log
+
+# Build output
+.next/
+build/
+dist/
+out/
+
+# OS files
+.DS_Store
+Thumbs.db
+__MACOSX/
+
+# IDE
+.vscode/
+.idea/
