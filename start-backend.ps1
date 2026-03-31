@@ -1,0 +1,16 @@
+$env:NODE_ENV="development"
+$env:PORT="5000"
+$env:FRONTEND_URL="http://localhost:3000"
+$env:DB_HOST="localhost"
+$env:DB_PORT="5432"
+$env:DB_NAME="legalaid_db"
+$env:DB_USER="postgres"
+$env:DB_PASSWORD="postgres123"
+$env:REDIS_HOST="127.0.0.1"
+$env:REDIS_PORT="6379"
+$env:JWT_SECRET="super_secret_local_jwt_key_32_c"
+$env:JWT_REFRESH_SECRET="refresh_secret_local_jwt_key_32_"
+$env:ENCRYPTION_KEY="super_secret_local_enc_key_32_c"
+
+Write-Host "Injected env vars. Starting backend..."
+node backend\src\app.js

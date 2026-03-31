@@ -24,6 +24,11 @@ const scannerRoutes      = require('./modules/scanner/scanner.routes');
 const { initSecurityScanJob } = require('./jobs/securityScan.job');
 
 const app = express();
+// ─── HEALTH CHECK ───
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
+});
+
 
 // ─── TRUST PROXY ───
 app.set('trust proxy', 1);
@@ -71,10 +76,7 @@ app.use('/api/admin/logs',    auditRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/admin/scanner', scannerRoutes);
 
-// ─── HEALTH CHECK ───
-app.get('/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString(), uptime: process.uptime() });
-});
+
 
 // ─── GLOBAL ERROR HANDLER ───
 app.use((err, req, res, next) => {
@@ -90,8 +92,9 @@ app.use((req, res) => {
 });
 
 // ─── START SERVER ───
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
+  console.log(`Backend fully initialized on port ${PORT}`);
   logger.info(`[Server] Running on port ${PORT} in ${process.env.NODE_ENV} mode`);
   initSecurityScanJob();
 });
